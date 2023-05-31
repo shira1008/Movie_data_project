@@ -1,8 +1,12 @@
 # Movie_data_project
 
 run the script like that:
-"python .\main.py <file name>.<file type>"
+python .\main.py FILE_NAME.FILE_TYPE
   <br/>
-  file name = the name of your storage file 
+  FILE_NAME = the name of your storage file 
    <br/>
-  file type = .json or .csv
+  FILE_TYPE = .json or .csv
+  <br/>
+  for example:
+  python .\main.py shira.json
+  
