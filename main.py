@@ -10,6 +10,7 @@ import os
 
 def main():
     # Command Line Arguments:
+    # please run the script like that: python .\main.py <file name>.<file type>
     file_name = "storage/" + sys.argv[1]
 
     if sys.argv[1].split(".")[1] == 'json':
