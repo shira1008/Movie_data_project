@@ -2,6 +2,13 @@ from abc import ABC, abstractmethod
 
 
 class IStorage(ABC):
+    """ Abstract base class for storage implementations.
+
+    The storage implementations provide methods for
+    listing movies, adding a movie, deleting a movie, and updating
+    a movie in the database.
+    """
+
     @abstractmethod
     def list_movies(self):
         """

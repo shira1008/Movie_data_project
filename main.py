@@ -9,8 +9,22 @@ import os
 
 
 def main():
-    # Command Line Arguments:
-    # please run the script like that: python .\main.py <file name>.<file type>
+    """
+    Main function to run the movie app.
+
+    This function is responsible for parsing the command line arguments,
+    initializing the storage based on the file type, and running the movie app.
+
+    The command line arguments should be provided in the format:
+    python main.py <file name>.<file type>
+
+    Supported file types:
+    - JSON (.json)
+    - CSV (.csv)
+
+    Example usage:
+    python main.py storage/movies.json
+    """
     file_name = "storage/" + sys.argv[1]
 
     if sys.argv[1].split(".")[1] == 'json':
@@ -30,7 +44,6 @@ def main():
                 json.dump(data, handle)
 
         storage = StorageJson(file_name)
-        movies = storage.list_movies()
         movie_app = MovieApp(storage)
         movie_app.run()
 

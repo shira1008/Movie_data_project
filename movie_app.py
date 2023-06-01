@@ -7,14 +7,31 @@ import pycountry
 import requests
 from colored import fg, attr
 from fuzzywuzzy import process
+
 from config import API_KEY
 
 
 class MovieApp:
     def __init__(self, storage):
+        """
+           Initialize the MovieApp with a storage instance.
+
+           Args:
+           - storage: An instance of a storage class that implements the required methods.
+           """
         self._storage = storage
 
     def fetch_data(self, title):
+        """
+        Fetch movie data from the OMDB API.
+
+        Args:
+        - title: The title of the movie to fetch.
+
+        Returns:
+        - data: The movie data as a dictionary, obtained from the OMDB API.
+        """
+
         url = f"https://www.omdbapi.com/?apikey={API_KEY}&t={title}"
         try:
             response = requests.get(url)
@@ -25,6 +42,13 @@ class MovieApp:
             print(f"Error: {e}")
 
     def create_website(self, data_with_html_structure):
+        """
+         Create a website using a given HTML structure.
+
+         Args:
+         - data_with_html_structure: The HTML structure containing movie information.
+         """
+
         TEMPLATE_FILE_NAME = "_static/index_template.html"
         NEW_FILE_NAME = "_static/index.html"
 
@@ -39,6 +63,13 @@ class MovieApp:
             print(f"{fg(2)}Website was generated successfully.{attr(0)}")
 
     def html_structure(self):
+        """
+        Generate the HTML structure for the movie list.
+
+        Returns:
+        - my_html_structure: The HTML structure as a string.
+        """
+
         movies = self._storage.list_movies()
         my_html_structure = ""
         for title, data in movies.items():
@@ -61,7 +92,9 @@ class MovieApp:
         return my_html_structure
 
     def list_movies(self):
-        """print the movies"""
+        """
+        Print the list of movies.
+        """
         movies = self._storage.list_movies()
         print(" ")
         print(f"{fg(85)}{len(movies)} movies in total: {attr(0)}")
@@ -71,6 +104,7 @@ class MovieApp:
 
     def add_movie(self):
         """adding new movie+rating"""
+
         movies = self._storage.list_movies()
         user_input_movie_name = input("Enter new movie name: ").capitalize()
         if user_input_movie_name not in movies:
@@ -159,8 +193,8 @@ class MovieApp:
             f"{fg(117)}Your movie for tonight: {random_key}({random_value_matched['year']}), it's rated {random_value_matched['rating']}{attr(0)}")
 
     def search_movie(self):
+        """search a movie by typing part of the name, case-insensitive"""
         movies = self._storage.list_movies()
-        """search a movie by typing part of the name, case insensitive"""
         user_input_movie_name = input("Enter part of movie name: ").lower()
         exact_match_found = False
 
@@ -193,6 +227,7 @@ class MovieApp:
 
     # BONUS
     def create_Rating_Histogram(self):
+        """Create a rating histogram for the movies in the storage"""
         movies = self._storage.list_movies()
         user_format = input("Enter a format and a file name (for example histo.png): ")
         data = [movie["rating"] for movie in movies.values()]
@@ -205,6 +240,7 @@ class MovieApp:
         plt.show()
 
     def run(self):
+        """run the program"""
         print(f'{fg("medium_purple_2b")}{attr("bold")}********** My Movies Database **********{attr(0)}')
         enter_input = True
         while enter_input:
