@@ -23,7 +23,7 @@ def main():
     - CSV (.csv)
 
     Example usage:
-    python main.py storage/movies.json
+    python main.py <filename>.json
     """
     file_name = "storage/" + sys.argv[1]
 
