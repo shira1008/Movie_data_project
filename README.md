@@ -18,11 +18,11 @@ Movie data project is an OOP command-line application that allows you to manage 
 
 ## how to run
 ### run the script like that:
-python .\main.py FILE_NAME.FILE_TYPE
+python .\main.py `FILE_NAME`.`FILE_TYPE`
   <br/>
-  FILE_NAME = the name of your storage file 
+  `FILE_NAME` = the name of your storage file 
    <br/>
-  FILE_TYPE = .json or .csv
+  `FILE_TYPE` = .json or .csv
   <br/>
   for example:
   python .\main.py shira.json
